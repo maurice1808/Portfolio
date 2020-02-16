@@ -5,3 +5,4 @@ The corpus consists of 2 playlists from the 'workout' section on Spotify. The fi
 Just by having a look at the mean values for certain attributes, some significant differences can be found between the 2 playlists. Surprisingly the motivational playlist(mean = 0.620) appears to be less danceable than the power playlist(mean = 0.816). Not so surprisingly the energetic playlist has a much higher energy score(mean = 0.809, max = 0.98) compared to the power playlist(mean = 0.610). Some similarities can be found as well, the average tempos for example are very close to eachother(124 vs 125).
 
 ![Week 7](Nrg-Dnc-Plot.png)
+test
