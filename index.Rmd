@@ -1,0 +1,38 @@
+---
+title:  'Computational Musicology'
+author: 'Maurice Schaasberg'
+date:   'February--March 2020'
+output: 
+    flexdashboard::flex_dashboard:
+        storyboard: true
+        theme: flatly
+---
+
+```{r setup}
+# In order to use these packages, we need to install flexdashboard, plotly, and Cairo.
+library(tidyverse)
+library(plotly)
+library(spotifyr)
+source('spotify.R')
+```
+
+### Introduction
+
+This is introductory text. In general, it is not possible to use headers in this text.
+
+***
+
+This is a second column of introductory text.
+
+
+### The Grammys are angrier than the Edisons
+
+
+***
+
+For this visualisation from Week 7, I took playlists of the pop music presented at the Grammy awards (US) and the Edison awards (NL) in 2019. Using `ggplotly`, the visualisation became interactive.
+
+The *x* axis shows valence and the *y* axis shows Spotify's ‘energy’ feature, which is roughly analogous to the notion of arousal in psychological research on emotion. Under this model, the quadrants of each graph, starting clockwise from the top left, represent angry, happy, relaxed, and sad music. The size of each point is proportional to the average volume of the track.
+
+The visualisation shows that in 2019, the pop music at the Grammys was (according to Spotify) rather angrier and rather louder than the music at the Edisons.
+
