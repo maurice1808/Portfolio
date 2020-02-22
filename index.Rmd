@@ -27,6 +27,20 @@ This is a second column of introductory text.
 
 ### The Grammys are angrier than the Edisons
 
+```{r}
+power <- get_playlist_audio_features('spotify', '37i9dQZF1DWUVpAXiEPK8P')
+motivation <- get_playlist_audio_features('spotify', '37i9dQZF1DXdxcBWuJkbcy')
+combined <- power %>% mutate(playlist = "power") %>% bind_rows(motivation %>% mutate(playlist = "motivation"))
+
+plot1 <- ggplot(combined, aes(x = danceability, y = energy, color = playlist, size = loudness)) +
+         geom_point() + scale_size_continuous(trans = "exp") + theme_light() +
+         labs(x = "Danceability", y = "Energy", size = "Loudness",color="Playlist") +
+         scale_x_continuous(breaks = c(0.3, 0.65, 1),minor_breaks=NULL) +
+         scale_y_continuous(breaks = c(0.3, 0.65, 1),minor_breaks=NULL)
+
+
+ggplotly(plot1)
+```
 
 ***
 
