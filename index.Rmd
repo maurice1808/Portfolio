@@ -16,16 +16,16 @@ library(spotifyr)
 source('spotify.R')
 ```
 
-### Introduction
+### Corpus
 
-This is introductory text. In general, it is not possible to use headers in this text.
+The corpus consists of 2 playlists from the 'workout' section on Spotify. The first one is titled 'Motivation mix'(80 songs) and is described as 'uplifting and energetic music that helps you stay motivated'. Presumably this playlist is more suited for cardio exercise rather than something like lifting weights. The other playlist is titled 'power workout'(50 songs) and according to Spotify it fits 'intense activity'. It might be interesting to find out if there are any key differences between these 2 playlists, and potentially answer questions such as: 'what makes a workout playlist energetic/motivational?' or 'what makes a workout playlist intense?'. If a lot of similarities are found than those might be characteristics of a 'workout' playlist.
 
 ***
 
-This is a second column of introductory text.
+Just by having a look at the mean values for certain attributes, some significant differences can be found between the 2 playlists. Surprisingly the motivational playlist(mean = 0.620) appears to be less danceable than the power playlist(mean = 0.816). Not so surprisingly the energetic playlist has a much higher energy score(mean = 0.809, max = 0.98) compared to the power playlist(mean = 0.610). Some similarities can be found as well, the average tempos for example are very close to eachother(124 vs 125).
 
 
-### The Grammys are angrier than the Edisons
+### The 4 quarters
 
 ```{r}
 power <- get_playlist_audio_features('spotify', '37i9dQZF1DWUVpAXiEPK8P')
@@ -33,20 +33,26 @@ motivation <- get_playlist_audio_features('spotify', '37i9dQZF1DXdxcBWuJkbcy')
 combined <- power %>% mutate(playlist = "power") %>% bind_rows(motivation %>% mutate(playlist = "motivation"))
 
 plot1 <- ggplot(combined, aes(x = danceability, y = energy, color = playlist, size = loudness)) +
-         geom_point() + scale_size_continuous(trans = "exp") + theme_light() +
-         labs(x = "Danceability", y = "Energy", size = "Loudness",color="Playlist") +
-         scale_x_continuous(breaks = c(0.3, 0.65, 1),minor_breaks=NULL) +
-         scale_y_continuous(breaks = c(0.3, 0.65, 1),minor_breaks=NULL)
+         geom_point() + scale_size_continuous(trans = "exp") +
+         labs(x = "Danceability", y = "Energy", color="", size ="") +
+         scale_x_continuous(limits = c(0.3, 1), breaks = c(0.3, 0.65, 1),minor_breaks=NULL) +
+         scale_y_continuous(limits = c(0.3, 1), breaks = c(0.3, 0.65, 1),minor_breaks=NULL)
 
 
-ggplotly(plot1)
+ggplotly(plot1) %>%
+  layout(legend = list(x = 100, y = 0.8))
 ```
 
 ***
 
-For this visualisation from Week 7, I took playlists of the pop music presented at the Grammy awards (US) and the Edison awards (NL) in 2019. Using `ggplotly`, the visualisation became interactive.
+This graph nicely splits the 2 playlists into 4 quarters. The bottom left quarter barely has any songs in it, possibly suggesting that songs with both low energy(<0.65) and low danceability(<0.65) are unlikely to be a workout song. The top left corner almost exclusively contains 'motivational songs', whereas the bottom right corner does so with 'power songs'. The top right corner has a mix of both, although they are still somewhat grouped together. 
 
-The *x* axis shows valence and the *y* axis shows Spotify's ‘energy’ feature, which is roughly analogous to the notion of arousal in psychological research on emotion. Under this model, the quadrants of each graph, starting clockwise from the top left, represent angry, happy, relaxed, and sad music. The size of each point is proportional to the average volume of the track.
+The size off the dots represent their loudness, with size increasing as they get louder. It might be a bit difficult to see at a glance, but the red dots appear to be larger than the blue ones overall. From this we can gather that those songs(Motivational) are slightly louder than those from the other playlist. One obvious exception is the big blue dot in the top right of the graph. This song is the loudest in the entire corpus, despite being in the quieter playlist. We'll have a look at this outlier on the next page.
 
-The visualisation shows that in 2019, the pop music at the Grammys was (according to Spotify) rather angrier and rather louder than the music at the Edisons.
+### The big blue outlier
 
+![Week 7](ChromagramVossi.png)
+
+***
+
+Here we have the chromagram of the outlier mentioned on the previous page. This song seemed very atypical for the playlist it came from, so I decided to have a more detailed look at it. The chroma features however are very erratic. The pitch is all over the place, with the F key being the only one that isn't used as much. This just further confirms that this song is unusual, and an outlier.
