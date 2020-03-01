@@ -31,8 +31,9 @@ Just by having a look at the mean values for certain attributes, some significan
 power <- get_playlist_audio_features('spotify', '37i9dQZF1DWUVpAXiEPK8P')
 motivation <- get_playlist_audio_features('spotify', '37i9dQZF1DXdxcBWuJkbcy')
 combined <- power %>% mutate(playlist = "power") %>% bind_rows(motivation %>% mutate(playlist = "motivation"))
+combined <- combined %>% rename(song = track.name)
 
-plot1 <- ggplot(combined, aes(x = danceability, y = energy, color = playlist, size = loudness)) +
+plot1 <- ggplot(combined, aes(x = danceability, y = energy, color = playlist, size = loudness, label = song)) +
          geom_point() + scale_size_continuous(trans = "exp") +
          labs(x = "Danceability", y = "Energy", color="", size ="") +
          scale_x_continuous(limits = c(0.3, 1), breaks = c(0.3, 0.65, 1),minor_breaks=NULL) +
@@ -51,8 +52,10 @@ The size off the dots represent their loudness, with size increasing as they get
 
 ### The big blue outlier
 
-![Week 7](ChromagramVossi.png)
+![Week 7](ChromagramCamelot.png)
 
 ***
 
 Here we have the chromagram of the outlier mentioned on the previous page. This song seemed very atypical for the playlist it came from, so I decided to have a more detailed look at it. The chroma features however are very erratic. The pitch is all over the place, with the F key being the only one that isn't used as much. This just further confirms that this song is unusual, and an outlier.
+
+The song is called "Camelot" by "NLE Choppa". After listening to the song I found out why the chromagram looks like this. The song has a bass kick that you would expect in a hip hop song, but along side this bass there's also a high pitch piano playing. These 2 are playing at the same time almost throughout the entire song.
