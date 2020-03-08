@@ -15,17 +15,15 @@ library(plotly)
 library(spotifyr)
 source('spotify.R')
 ```
-### A look at the song structures {data-commentary-width=600}
-![Week 9](all4.png)
+### A consistent tempo {data-commentary-width=600}
+![Week 9](Tempo_plot.png)
 
 
 ***
 
-To get an idea of how songs are structured within each playlist, I decided to have a look at some self-similarity matrices. The songs that were chosen are both very central points on the energy-danceability plot. They each have energy and danceability values that are very close to the means of their respective playlist.
+What we see in the plot is quite peculiar. It appears that the motivation mix has an extremely consist tempo, with almost all the songs having a bpm of around 125. The power mix shows the complete opposite. The songs of that playlist are all over the place, with bpm's ranging from 75 all the way up to 150. This would suggest that the motivation mix has a far more consistent sound. When all the songs have roughly the same tempo songs will sound somewhat similar. If you transition from a 75 bpm track to a 150 bpm one, you'll notice a very big difference. The standard deviations are all fairly low which means that the songs themselves have a consistent tempo. 
 
-The 2 matrices on the top were made using the song "hot" from the "power" playlist. The pitch and timbre appear to have a very similar structure, suggesting that whenever the pitch changes whenever the timbre changes and vice versa. The overall structure is a fairly standard checkerboard. This song likely has a chorus that is played 3 times, which is represented by the boxes. In between each chorus there is a verse which can be seen by the horizontal/vertical lines.
-
-From the "motivational" playlist I chose the song " Perfect Crime'. This one shows very different characteristics as the previous one. This time, the timbre and pitch don't change at the same time. The pitch also shows very drastic and frequent variation, there are a lot of straight lines and their intensity is high. In contrast, the timbre has a much clearer structure and the changes aren't anywhere near as intense or frequent.
+However things aren't as they seem. What can't be seen in this plot, but can be seen when you change the limit of the y axis, is a cluster of about 15 songs from the motivational mix. The mean tempo is again around 125 for this cluster, but the standard deviation for this cluster is about 40. What I suspect is going on here, is that this is caused by tracks that have an intro and possibly an outro. I did notice that the motivation mix has some tracks where the first minute or so, is just building up to a drop. The actual beat takes some time to kick in so the bpm starts low and shoots up later in the song. This would cause the standard deviation to be really high like it is for these 15 tracks.
 
 ### Corpus {data-commentary-width=800}
 
@@ -70,3 +68,15 @@ The size off the dots represent their loudness, with size increasing as they get
 Here we have the chromagram of the outlier mentioned on the previous page. This song seemed very atypical for the playlist it came from, so I decided to have a more detailed look at it. The chroma features however are very erratic. The pitch is all over the place, with the F key being the only one that isn't used as much. This just further confirms that this song is unusual, and an outlier.
 
 The song is called "Camelot" by "NLE Choppa". After listening to the song I found out why the chromagram looks like this. The song has a bass kick that you would expect in a hip hop song, but along side this bass there's also a high pitch piano playing. These 2 are playing at the same time almost throughout the entire song. The bass is causing energy at the lower tones and the piano at the higher tones.
+
+### A look at the song structures {data-commentary-width=600}
+![Week 9](all4.png)
+
+
+***
+
+To get an idea of how songs are structured within each playlist, I decided to have a look at some self-similarity matrices. The songs that were chosen are both very central points on the energy-danceability plot. They each have energy and danceability values that are very close to the means of their respective playlist.
+
+The 2 matrices on the top were made using the song "hot" from the "power" playlist. The pitch and timbre appear to have a very similar structure, suggesting that whenever the pitch changes whenever the timbre changes and vice versa. The overall structure is a fairly standard checkerboard. This song likely has a chorus that is played 3 times, which is represented by the boxes. In between each chorus there is a verse which can be seen by the horizontal/vertical lines.
+
+From the "motivational" playlist I chose the song " Perfect Crime'. This one shows very different characteristics as the previous one. This time, the timbre and pitch don't change at the same time. The pitch also shows very drastic and frequent variation, there are a lot of straight lines and their intensity is high. In contrast, the timbre has a much clearer structure and the changes aren't anywhere near as intense or frequent.
