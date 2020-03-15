@@ -15,15 +15,13 @@ library(plotly)
 library(spotifyr)
 source('spotify.R')
 ```
-### A consistent tempo {data-commentary-width=600}
-![Week 9](Tempo_plot.png)
+### Tempogram of an outlier {data-commentary-width=600}
+![Week 9](tempogram_whyg.png)
 
 
 ***
 
-What we see in the plot is quite peculiar. It appears that the motivation mix has an extremely consist tempo, with almost all the songs having a bpm of around 125. The power mix shows the complete opposite. The songs of that playlist are all over the place, with bpm's ranging from 75 all the way up to 150. This would suggest that the motivation mix has a far more consistent sound. When all the songs have roughly the same tempo songs will sound somewhat similar. If you transition from a 75 bpm track to a 150 bpm one, you'll notice a very big difference. The standard deviations are all fairly low which means that the songs themselves have a consistent tempo. 
-
-However things aren't as they seem. What can't be seen in this plot, but can be seen when you change the limit of the y axis, is a cluster of about 15 songs from the motivational mix. The mean tempo is again around 125 for this cluster, but the standard deviation for this cluster is about 40. What I suspect is going on here, is that this is caused by tracks that have an intro and possibly an outro. I did notice that the motivation mix has some tracks where the first minute or so, is just building up to a drop. The actual beat takes some time to kick in so the bpm starts low and shoots up later in the song. This would cause the standard deviation to be really high like it is for these 15 tracks.
+Based on this tempogram, my hypothesis on the last slide doesn't seem to be true. This is the tempogram for the song "Where have you gone", one of the 15 songs mentioned previously. In the sd/mean bpm plot it showed that it had a standard deviation of about 48. The high standard deviation isn't caused by a slow intro/outro like I thought. Instead it appears that there is a sound with a bpm of about 95 that plays in the middle and last part of the song. This sound is most likely what made the standard deviation so high.
 
 ### Corpus {data-commentary-width=800}
 
@@ -80,3 +78,13 @@ To get an idea of how songs are structured within each playlist, I decided to ha
 The 2 matrices on the top were made using the song "hot" from the "power" playlist. The pitch and timbre appear to have a very similar structure, suggesting that whenever the pitch changes whenever the timbre changes and vice versa. The overall structure is a fairly standard checkerboard. This song likely has a chorus that is played 3 times, which is represented by the boxes. In between each chorus there is a verse which can be seen by the horizontal/vertical lines.
 
 From the "motivational" playlist I chose the song " Perfect Crime'. This one shows very different characteristics as the previous one. This time, the timbre and pitch don't change at the same time. The pitch also shows very drastic and frequent variation, there are a lot of straight lines and their intensity is high. In contrast, the timbre has a much clearer structure and the changes aren't anywhere near as intense or frequent.
+
+### A consistent tempo {data-commentary-width=600}
+![Week 9](Tempo_plot.png)
+
+
+***
+
+What we see in the plot is quite peculiar. It appears that the motivation mix has an extremely consist tempo, with almost all the songs having a bpm of around 125. The power mix shows the complete opposite. The songs of that playlist are all over the place, with bpm's ranging from 75 all the way up to 150. This would suggest that the motivation mix has a far more consistent sound. When all the songs have roughly the same tempo songs will sound somewhat similar. If you transition from a 75 bpm track to a 150 bpm one, you'll notice a very big difference. The standard deviations are all fairly low which means that the songs themselves have a consistent tempo. 
+
+However things aren't as they seem. What can't be seen in this plot, but can be seen when you change the limit of the y axis, is a cluster of about 15 songs from the motivational mix. The mean tempo is again around 125 for this cluster, but the standard deviation for this cluster is about 40. What I suspect is going on here, is that this is caused by tracks that have an intro and possibly an outro. I did notice that the motivation mix has some tracks where the first minute or so, is just building up to a drop. The actual beat takes some time to kick in so the bpm starts low and shoots up later in the song. This would cause the standard deviation to be really high like it is for these 15 tracks.
