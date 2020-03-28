@@ -59,7 +59,7 @@ The size off the dots represents their loudness, with size increasing as they ge
 
 To get an idea of how songs are structured within each playlist, I decided to have a look at some self-similarity matrices. The songs that were chosen are both very central points on the energy-danceability plot. They each have energy and danceability values that are very close to the means of their respective playlist.
 
-The 2 matrices on the top were made using the song "hot" from the "power" playlist. The pitch and timbre appear to have a very similar structure, suggesting that whenever the pitch changes whenever the timbre changes and vice versa. The overall structure is a fairly standard checkerboard. This song likely has a chorus that is played 3 times, which is represented by the boxes. In between each chorus there is a verse which can be seen by the horizontal/vertical lines.
+The 2 matrices on the top were made using the song "hot" from the "power" playlist. The pitch and timbre appear to have a very similar structure, suggesting that the pitch changes whenever the timbre changes and vice versa. The overall structure is a fairly standard checkerboard. This song likely has a chorus that is played 3 times, which is represented by the boxes. In between each chorus there is a verse which can be seen by the horizontal/vertical lines.
 
 From the "motivational" playlist I chose the song " Perfect Crime'. This one shows very different characteristics as the previous one. This time, the timbre and pitch don't change at the same time. The pitch also shows very drastic and frequent variation, there are a lot of straight lines and their intensity is high. In contrast, the timbre has a much clearer structure and the changes aren't anywhere near as intense or frequent.
 
@@ -106,6 +106,8 @@ Next I fitted a logistic regression model on the training set, using the feature
 Due to working with such a small dataset, this process was repeated 1000 times. Each time a new training/test split was generated and a new model was trained/evaluated. This makes the results far more reliable since they are no longer dependant on how the data is split up.
 
 The average accuracy over 1000 iterations was 92.4%. Out of the 15 power songs 13.43(on average) were correctly predicted to be a power song, and 1.57 were incorrectly predicted to be a motivational song. Out of the 24 motivational songs 22.59 were correctly predicted to be a motivational song, and 1.41 were incorrectly predicted to be a power song.
+
+These results are very good but not too surprising. The '4 quarters plot' only uses 2 features and the 2 clusters already have very little overlap. Adding 2 features with strong correlations (loudness & speechiness) are only gonna make that even better.  
 
 ### Conclusion {data-commentary-width=600}
 2 workout playlists made by Spotify were analyzed and compared to see if Spotifys track selection was consistent, and what the defining characteristics of each playlist are.
